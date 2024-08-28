@@ -1,7 +1,9 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
 
-const TransactionChartSummary = ({ expense = 100, income = 100 }) => {
+const TransactionChartSummary = ({ expense, income }) => {
+
+    const hasData = expense !== 0 && income !== 0;
 
     const options = {
         labels: ['Expenses', 'Incomes'],
@@ -48,10 +50,9 @@ const TransactionChartSummary = ({ expense = 100, income = 100 }) => {
     return (
         <Chart
             options={options}
-            series={[expense, income]}
+            series={hasData ? [expense, income] : [1, 1]}
             type='pie'
             width={'100%'}
-            height={'100%'}
         />
     )
 }
